@@ -6,7 +6,7 @@
 <version>1.0</version>
 <publisher>jeremyt</publisher>
 <url>www.storific.com</url>
-<icon>public/apple-touch-icon-144x144.png</icon>
+<icon>Icon.png</icon>
 <copyright>2012 by Storific</copyright>
 <!-- Window Definition - these values can be edited -->
 <window>
