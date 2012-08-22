@@ -1,5 +1,5 @@
 .DS_Store
-dist/Resources
+Resources
 dist/osx/*.app
 node_modules
 test
