@@ -39,9 +39,38 @@ autoload = ->
   for router in ['TopLevel']
     ST.routers[router] = new (require 'routers/'+router)
 
+initContextMenu = ->
+
+openTranslationFile = ->
+
+saveTranslationFile = ->
+
+findStringsToTranslate = (v)->
+  r = /\Wtr\(? *["']((?:[^("|')\\]|\\.)*)["']/g
+  t = []
+  while m = r.exec v
+    t.push m[1]
+  t
+
+scanFile = ->
+  Titanium.UI.getCurrentWindow().openFileChooserDialog (filesPath)->
+    file = Titanium.Filesystem.getFile(ST.misc.current_file = filesPath[0])
+    ST.misc.scannedTranslations = findStringsToTranslate(file.read())
+
+initMenu = ->
+  menu = Titanium.UI.createMenu()
+  file = Titanium.UI.createMenuItem("File")
+  file.addItem "Open...", openTranslationFile
+  file.addItem "Save", saveTranslationFile
+  file.addItem "Scan file...", scanFile
+  menu.appendItem file
+  Titanium.UI.setMenu menu
+
 # App bootstrapping on document ready
 _.defer ->
   autoload()
+  initContextMenu()
+  initMenu()
 
   Backbone.history.start()
   Backbone.history.navigate 'home', true

@@ -1,3 +1,11 @@
+###
+Translator: Jeremy Trufier <jeremy@trufier.com>
+Company: 
+ProjectId: com.storific.translator
+File: app.js
+Hashsum: ee44b7d1844577df0c3233f7c0ee5007
+###
+
 $ =
   pluralize: (i, t0, t1, to)-> (s)-> 
     n = parseInt(arguments[i+1])
