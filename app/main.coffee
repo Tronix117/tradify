@@ -15,9 +15,14 @@ autoload = ->
     window._dii[a] = 0 unless window._dii[a]
     console.log a + '.' + window._dii[a]++
 
+  window.requireSafe = (f)->
+    try return require(f) catch e
+    return null
+
   # I18n configuration
   I18n = require 'utils/I18n'
-  I18n.locale = 'en'
+  I18n.locale = 'fn'
+  I18n.fallback_locale = 'en'
   I18n.globalize()
 
   # Adding mixin

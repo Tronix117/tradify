@@ -4,7 +4,7 @@ I18n.locale = 'en'
 I18n.fallback_locale = 'en'
 
 I18n.globalize = -> window.tr = I18n.tr
-I18n.load = -> window._Translations = require('locale/' + I18n.locale) || require('locale/' + I18n.fallback_locale) || []
+I18n.load = -> window._Translations = requireSafe('locales/' + I18n.locale) || requireSafe('locales/' + I18n.fallback_locale) || []
 
 # i18n
 # How is it working ?
@@ -28,7 +28,7 @@ I18n.tr = (s)->
   while i < t.length
     s = if typeof t[i] is "function" then t[i].apply(this, a) else t[i]
     i++
-  (DEV&&'@'||'') + s.replace /{(\d+)\w?(#.*)?}/g, (n, c) ->
+  s.replace /{(\d+)\w?(#.*)?}/g, (n, c) ->
     a[c]  if a[c = parseInt(c) + 1]
 
 module.exports = I18n
