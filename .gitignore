@@ -1,0 +1,6 @@
+.DS_Store
+dist/Resources
+dist/osx/*.app
+node_modules
+test
+log

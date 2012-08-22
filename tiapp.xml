@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ti:app xmlns:ti='http://ti.appcelerator.org'>
+<!-- These values are edited/maintained by Titanium Developer -->
+<id>com.storific.translator</id>
+<name>Storific Translator</name>
+<version>1.0</version>
+<publisher>jeremyt</publisher>
+<url>www.storific.com</url>
+<icon>public/apple-touch-icon-144x144.png</icon>
+<copyright>2012 by Storific</copyright>
+<!-- Window Definition - these values can be edited -->
+<window>
+<id>initial</id>
+<title>Storific Translator</title>
+<url>app://index.html</url>
+<width>1024</width>
+<max-width>10000</max-width>
+<min-width>1024</min-width>
+<height>768</height>
+<max-height>10000</max-height>
+<min-height>768</min-height>
+<fullscreen>false</fullscreen>
+<resizable>true</resizable>
+<chrome scrollbars="true">true</chrome>
+<maximizable>true</maximizable>
+<minimizable>true</minimizable>
+<closeable>true</closeable>
+</window>
+</ti:app>
