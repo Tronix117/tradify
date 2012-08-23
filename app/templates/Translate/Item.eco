@@ -1,10 +1,19 @@
-<div class="state state-<%= @state %>"></div>
 <div class="flag flag<%= @flag %>"></div>
 <div class="value"><%= @value %></div>
-<textarea class="translation"></textarea>
-<% for item in @help: %>
-  {<%= item.number %>} <%= item.type %> <%= item.comment %> <a href="#">Plural</a> | <a href="#">Conditionnal</a><br />
-<% end %>
+<textarea class="translation<%= ' wide' if @help.length == 0 %>"></textarea>
+<ul class="infos">
+  <% for item in @help: %>
+    <li>
+      <span class="info">
+        <span class="arg">{<%= item.number %>}</span> 
+        <span class="type"><%= '(' + item.type + ')' if item.type %></span> 
+        <span class="comment"><%= item.comment %></span>
+      </span>
+      <a href="#">cond?</a>
+    </li>
+  <% end %>
+</ul>
 <% if @state == 'missing': %>
   This translation is not needed anymore <button>Remove it!</button>
 <% end %>
+<br class="clear" />

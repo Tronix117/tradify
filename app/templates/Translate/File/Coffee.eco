@@ -1,24 +1,32 @@
 ###
-Translator: Jeremy Trufier <jeremy@trufier.com>
-Company: 
-ProjectId: com.storific.translator
-File: app.js
-Hashsum: ee44b7d1844577df0c3233f7c0ee5007
+Translator: <%= @translator %>
+Company: <%= @company %>
+ProjectId: <%= @projectId %>
+File: <%= @fileName %>
+Hashsum: <%= @hash %>
 ###
 
 $=
   pluralize: (i, t0, t1, to)-> (s)-> 
-    n = parseInt(arguments[i+1])
-    return if n == 0 then t0 else if n == 1 then t1 else to
+    conditional i,
+      0: t0
+      1: t1
+      'other': to
 
   genderize: (i, tm, tf, to)-> (s)-> 
-    sex = arguments[i+1]
-    return if sex == 'male' then tm else if sex == 'female' then tf else to
+    conditional i,
+      'male': tm
+      'female': tf
+      'other': to
 
+  conditional: (i, conditions)-> (s)->
+    text = null
+    for value, condition in conditions
+      break if arguments[i+1] == (text = value)
+    text # if no match, last value will be used
 
 T= 
-  <% for item in @translations %>
-  <%= item.get 'raw' %>: <%= item.get('translation')[0] || 'null' %>
+  <% for item in @translations: %><%= JSON.stringify item.raw %>: <%= JSON.stringify item.translation[0] %> <%= '#' + item.state if item.state != 0 %>
   <% end %>
 
 module.exports = T

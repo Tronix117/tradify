@@ -1,8 +1,8 @@
 module.exports =
   Translation:
-    STATE_NEW     : 0
-    STATE_MISSING : 1
-    STATE_DONE    : 2
+    STATE_DONE    : 0
+    STATE_NEW     : 1
+    STATE_MISSING : 2
     STATE_PENDING : 3
     STATE_XX      : 4
     STATE_XXX     : 5

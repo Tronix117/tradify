@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <ti:app xmlns:ti='http://ti.appcelerator.org'>
 <!-- These values are edited/maintained by Titanium Developer -->
-<id>com.storific.translator</id>
-<name>Storific Translator</name>
+<id>com.storific.tradify</id>
+<name>Tradify</name>
 <version>1.0</version>
 <publisher>jeremyt</publisher>
 <url>www.storific.com</url>
@@ -11,7 +11,7 @@
 <!-- Window Definition - these values can be edited -->
 <window>
 <id>initial</id>
-<title>Storific Translator</title>
+<title>Tradify</title>
 <url>app://index.html</url>
 <width>1024</width>
 <max-width>10000</max-width>

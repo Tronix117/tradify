@@ -7,7 +7,7 @@ class TranslatePageView extends BaseView
   el: '#viewport'
 
   events:
-    'click '
+    'click .action-save': 'saveTranslations'
 
   initialize: ->
     @initModel()
@@ -49,14 +49,20 @@ class TranslatePageView extends BaseView
     help
 
   saveTranslations: ->
-    db = (filePath)->
+    cb = (filesPath)->
       console.log arguments
-      fileContent = require 'templates/Translate/File/Coffee', ST.collections.Translations.toJSON()
+      fileContent = (require 'templates/Translate/File/Coffee') 
+        translator: 'Jeremy Trufier <jeremy@trufier.com>'
+        translations: ST.collections.Translations.toJSON()
+        projectId: 'com.storific.pro'
+        file: 'app.js'
+        hash: ''
+      alert 'Unable to write file' unless Titanium.Filesystem.getFile(filesPath[0]).write fileContent
 
     Titanium.UI.getCurrentWindow().openSaveAsDialog cb, 
       title: "Save translation file..."
       multiple: false
-      types: ['coffee'] # ,'js','json','yml']
+      types: ['coffee','js','json','yml']
       defaultFile: 'en.coffee'
       
 
