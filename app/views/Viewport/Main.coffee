@@ -1,13 +1,10 @@
 class Viewport extends BaseView
-  template: require('templates/Viewport')
+  template: require 'templates/Viewport'
   id: 'viewport'
-  contentSelector: null
-
+  el: $ 'body'
 
   initialize: ->
     @render()
-
-  doRender: ->
-    $('body').append @template()
+    new (require 'views/Viewport/Menu')
 
 module.exports = Viewport

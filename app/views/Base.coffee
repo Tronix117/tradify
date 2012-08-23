@@ -1,5 +1,14 @@
 class BaseView extends Backbone.View
 
+  constructor: ->
+    @model = new (require 'models/Base')
+    super
+
+  render: ->
+    $(@el).html @template @model.toJSON()
+    @
+
+###
   # All managed subviews go here
   _views: null
 
@@ -87,5 +96,5 @@ class BaseView extends Backbone.View
     @trigger 'beforerender', @
     @doRender.apply @, arguments
     @trigger 'afterrender', @
-    
+###
 module.exports = BaseView

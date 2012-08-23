@@ -1,3 +1,5 @@
+<div id="viewport"></div>
+
 <%=tr("Hello {0#first_name}",'Jeremy')%><br />
 <%=tr("There is {0i} fish",5)%><br />
 <%=tr("There is {0i} fish",1)%><br />
