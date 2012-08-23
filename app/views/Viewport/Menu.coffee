@@ -6,8 +6,8 @@ class MenuView extends BaseView
   el: '#viewport'
 
   events:
-    'click #action-scan button': 'scanAction'
-    'click #action-open button': 'openAction'
+    'click .action-scan': 'scanAction'
+    'click .action-open': 'openAction'
 
   initialize: ->
     @render()

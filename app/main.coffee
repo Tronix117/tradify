@@ -41,6 +41,7 @@ autoload = ->
   window.BaseRouter = require 'routers/Base'
   window.BaseCollection = require 'collections/Base'
   window.BaseModel = require 'models/Base'
+  window.Constants = require 'utils/Constants'
   
   # Router autoloading
   for router in ['TopLevel']

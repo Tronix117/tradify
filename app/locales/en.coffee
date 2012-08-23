@@ -18,7 +18,7 @@ $=
 
 T= 
   "Hello {0#first_name}": null
-  "There is {0i} fish": $.pluralize(0, "There is no fish", "There is 1 fish", "There are {0} fishes")
+  "There is {0i} fish and {1}": $.pluralize(0, "There is no fish and {1}", "There is 1 fish {1}", "There are {0} fishes")
   "You are a man": $.genderize(0, "You are a man", "You are a woman")
 
 module.exports = T

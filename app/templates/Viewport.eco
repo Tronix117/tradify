@@ -3,6 +3,6 @@
 <%=tr("Hello {0#first_name}",'Jeremy')%><br />
 <%=tr("There is {0i} fish",5)%><br />
 <%=tr("There is {0i} fish",1)%><br />
-<%=tr("There is {0i} fish",0)%><br />
+<%=tr("There is {0i} fish and {1}",0,'you')%><br />
 <%=tr("You are a man",'male')%>
 lol
