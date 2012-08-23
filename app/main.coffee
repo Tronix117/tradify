@@ -75,6 +75,7 @@ initMenu = ->
 
 # App bootstrapping on document ready
 _.defer ->
+  Titanium.UI.getCurrentWindow().showInspector true
   autoload()
   initContextMenu()
   initMenu()

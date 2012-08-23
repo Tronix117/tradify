@@ -2,9 +2,15 @@
   <h1>Translate Page</h1>
 
   <table>
-    <% for translation in @translations: %>
+    <% for item in @collection.models : %>
       <tr>
-        <td><%=translation%></td>
+        <td><%= item.get 'raw' %></td>
+        <td>
+          <input type="text" value="" />
+          <% for argHelp in item.get 'help': %>
+            <a href="#">{<%= argHelp.number %>}</a> <%= argHelp.type %> <%= argHelp.comment %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </table>
