@@ -1,0 +1,10 @@
+<div class="state state-<%= @state %>"></div>
+<div class="flag flag<%= @flag %>"></div>
+<div class="value"><%= @value %></div>
+<textarea class="translation"></textarea>
+<% for item in @help: %>
+  {<%= item.number %>} <%= item.type %> <%= item.comment %> <a href="#">Plural</a> | <a href="#">Conditionnal</a><br />
+<% end %>
+<% if @state == 'missing': %>
+  This translation is not needed anymore <button>Remove it!</button>
+<% end %>
