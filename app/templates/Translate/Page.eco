@@ -1,0 +1,11 @@
+<div id="translate-page">
+  <h1>Translate Page</h1>
+
+  <table>
+    <% for translation in @translations: %>
+      <tr>
+        <td><%=translation%></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

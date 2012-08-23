@@ -1,0 +1,10 @@
+<div id="menu">
+  <div id="action-scan">
+    <button>Scan a JS file</button>
+    <p>Look for strings to translate, use this to create initiate a new translation file</p>
+  </div>
+  <div id="action-open">
+    <button>Open a translation file</button>
+    <p>Open an already existing translation file, you will be able to update it later</p>
+  </div>
+</div>
