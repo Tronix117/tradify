@@ -20,6 +20,8 @@ class TranslatePageView extends BaseView
     $(@el).prepend menuBar()
 
   displayItems: ->
+    @$('.translate-item').remove()
+    
     for model in translationsCollection.models
       new itemView
         model: model
@@ -65,6 +67,7 @@ class TranslatePageView extends BaseView
     Titanium.UI.getCurrentWindow().openFileChooserDialog (filesPath)=>
       ST.misc.currentTranslationFile = Titanium.Filesystem.getFile(filesPath[0])
       translationsCollection.resetFromCoffee  ST.misc.currentTranslationFile.read()
+      @displayItems()
 
   scanFile: ->
     Titanium.UI.getCurrentWindow().openFileChooserDialog (filesPath)=>

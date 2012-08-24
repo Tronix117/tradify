@@ -1,6 +1,6 @@
 <div class="flag flag<%= @flag %>"></div>
 <div class="value"><%= @value %></div>
-<textarea class="translation<%= ' wide' if @help.length == 0 %>"></textarea>
+<textarea class="translation<%= ' wide' if @help.length == 0 %>"><%= @translation[0] %></textarea>
 <ul class="infos">
   <% for item in @help: %>
     <li>
