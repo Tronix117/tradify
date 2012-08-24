@@ -20,5 +20,6 @@ T=
   "Hello {0#first_name}": null
   "There is {0i} fish and {1}": $.pluralize(0, "There is no fish and {1}", "There is 1 fish {1}", "There are {0} fishes")
   "You are a man": $.genderize(0, "You are a man", "You are a woman")
+  "– Nothing to translate. You should try opening an existing translation file, or scanning some sourcecode ;) –": "– Rien à traduire. Vous devriez essayer d'ouvrir un fichier de traduction existant, ou scanner du code source ;) –"
 
 module.exports = T

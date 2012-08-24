@@ -28,13 +28,9 @@ autoload = ->
 
   # I18n configuration
   I18n = require 'utils/I18n'
-  I18n.locale = 'en'
-  I18n.fallback_locale = 'en'
-  I18n.globalize()
 
   # Adding mixin
   _.mixin require 'utils/Mixin'
-  _.mixin I18n
   
   # Base class
   window.BaseView = require 'views/Base'
