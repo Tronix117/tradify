@@ -54,7 +54,7 @@ class TranslatePageView extends BaseView
 
     Titanium.UI.getCurrentWindow().openSaveAsDialog (filesPath)-> 
         ST.misc.currentTranslationFile = Titanium.Filesystem.getFile(filesPath[0])
-        writeFile()
+        writeFile(ST.misc.currentTranslationFile)
       , 
       title: "Save translation file..."
       multiple: false

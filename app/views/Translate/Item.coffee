@@ -2,7 +2,7 @@ class TranslateItemView extends BaseView
   template: require 'templates/Translate/Item'
 
   events:
-    'keypress .translation': 'updateTranslation'
+    'keyup .translation': 'updateTranslation'
     'click .flag': 'changeFlag'
 
   initialize: -> 
@@ -10,7 +10,7 @@ class TranslateItemView extends BaseView
     $(@el).addClass 'state-' + @model.get 'state'
 
   updateTranslation: ->
-    @model.set 'translation', [@$('.translation').val()]
+    @model.attributes.translation = [@$('.translation').val()]
 
   changeFlag: ->
     $flag = @$('.flag')

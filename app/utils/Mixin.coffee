@@ -1,14 +1,16 @@
 # Adding stuff to underscore
 module.exports = 
   binDisable: (bin, numbers)->
-    [].concat numbers
+    numbers = [].concat numbers
     for n in numbers
       bin ^= Math.pow(2,n) if bin & Math.pow(2,n)
+    bin
 
   binEnable: (bin, numbers)->
-    [].concat numbers
+    numbers = [].concat numbers
     for n in numbers
       bin |= Math.pow(2,n)
+    bin
 
   binIsEnabled: (bin, number)->
     bin & Math.pow(2,n)

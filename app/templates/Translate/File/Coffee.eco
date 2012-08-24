@@ -26,7 +26,7 @@ $=
     text # if no match, last value will be used
 
 T=
-  <% for item in @translations: %><%= JSON.stringify item.raw %>: <%= JSON.stringify item.translation[0] %> <%= '#' + item.binary if item.binary != 0 %>
+  <% for item in @translations: %><%- JSON.stringify item.raw %>: <%- JSON.stringify item.translation[0] || null %> <%- '#' + item.binary if item.binary != 0 %>
   <% end %>
 
 module.exports = T
