@@ -1,3 +1,3 @@
 <div id="translate-page">
-  <h1><%= tr 'Translate Page' %></h1>
+  <h2><%= tr '– Nothing to translate. You should try opening an existing translation file, or scanning some sourcecode ;) –' %></h2>
 </div>

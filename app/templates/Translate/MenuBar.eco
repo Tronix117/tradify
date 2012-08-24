@@ -1,4 +1,5 @@
 <div class="translate-menu-bar">
+  <div class="action-open button">Open</div>
   <div class="action-save button">Save</div>
-  <div class="action-scan button">Rescan</div>
+  <div class="action-scan button">Scan code</div>
 </div>

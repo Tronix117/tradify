@@ -5,6 +5,7 @@ class Viewport extends BaseView
 
   initialize: ->
     @render()
-    new (require 'views/Viewport/Menu')
+    #new (require 'views/Viewport/Menu')
+    new (require 'views/Translate/Page')
 
 module.exports = Viewport

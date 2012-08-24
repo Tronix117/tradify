@@ -25,7 +25,7 @@ $=
       break if arguments[i+1] == (text = value)
     text # if no match, last value will be used
 
-T= 
+T=
   <% for item in @translations: %><%= JSON.stringify item.raw %>: <%= JSON.stringify item.translation[0] %> <%= '#' + item.state if item.state != 0 %>
   <% end %>
 
