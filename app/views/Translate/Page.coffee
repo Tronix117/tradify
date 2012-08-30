@@ -43,9 +43,9 @@ class TranslatePageView extends BaseView
 
   saveTranslations: ->
     writeFile = (file, ext)->
-      fileContent = (require 'templates/Translate/File/' + ext.toUpperCase() + ext.substr(1).toLowerCase()) 
+      fileContent = (require 'templates/Translate/File/' + ext[0].toUpperCase() + ext.substr(1).toLowerCase()) 
         translator: 'Jeremy Trufier <jeremy@trufier.com>'
-        translations: translationsCollection.toJSON()
+        translations: translationsCollection.toJSON(ext)
         projectId: 'com.storific.pro'
         file: 'app.js'
         hash: ''

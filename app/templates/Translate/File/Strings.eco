@@ -1,12 +1,12 @@
-###
-Translator: <%= @translator %>
-Company: <%= @company %>
-ProjectId: <%= @projectId %>
-File: <%= @fileName %>
-Hashsum: <%= @hash %>
-###
+/**
+ * Translator: <%= @translator %>
+ * Company: <%= @company %>
+ * ProjectId: <%= @projectId %>
+ * File: <%= @fileName %>
+ * Hashsum: <%= @hash %>
+**/
 
 <% for item in @translations: %>
-<%- '/*' + item.comment + '*/' if item.comment %>
-<%- JSON.stringify item.raw %> = <%- JSON.stringify item.translation || "" %> <%- '/*' + item.binary + '*/' if item.binary != 0 %>
+<%- '/* ' + item.comment + ' */' if item.comment %>
+<%- item.raw %> = <%- JSON.stringify item.translation[0] || "" %>;<%- '/*' + item.binary + '*/' if item.binary != 0 %>
 <% end %>

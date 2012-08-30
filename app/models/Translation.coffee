@@ -32,7 +32,7 @@ class TranslationModel extends BaseModel
     json = _.clone @attributes
 
     if type == "strings"
-      json.translation = json.translation.replace /{(\d+)}/g, -> '%' + (parseInt(arguments[1]) + 1) + '$@'
+      json.translation[0] = json.translation[0].replace /{(\d+)}/g, -> '%' + (parseInt(arguments[1]) + 1) + '$@'
 
     json.binary = @getBinary()
     json

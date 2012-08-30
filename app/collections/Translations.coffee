@@ -31,7 +31,7 @@ class TranslationsCollection extends BaseCollection
 
   resetFromStrings: (content, options = {})->
     @reset []
-    reg = /(\/\*\s.*\s\*\/\n)?(".*")\s=\s(".*");(\/\*\d*\/\*)?/g
+    reg = /(\/\*\s.*\s\*\/\n)?(".*")\s=\s(".*");(\/\*\d+\*\/)?/g
 
     while item = reg.exec content
       i = 0
@@ -40,10 +40,10 @@ class TranslationsCollection extends BaseCollection
       item[3] = JSON.parse(item[3]).replace /(\%(\d+\$)?@)/g, -> 
         '{'+(parseInt(arguments[2] || 1)-1)+'}'
 
-      item[4] = if item[4] then parseInt(item[4].substr(1)) else 0
-
+      item[4] = if item[4] then parseInt(item[4].substr(2)) else 0
+      console.log item
       @add
-        comment: item[1]
+        comment: if item[1] then item[1].match(/\/\*\s(.*)\s\*\//)[1] else ''
         raw: item[2]
         value: val
         translation: [item[3]]
