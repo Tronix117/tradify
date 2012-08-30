@@ -8,13 +8,6 @@ window.ST =
   paths: {}
 
 autoload = ->
-  # Debug stuff
-  window.dl = console.log
-  window._dii = {}
-  window.di = (a = 0)-> 
-    window._dii[a] = 0 unless window._dii[a]
-    console.log a + '.' + window._dii[a]++
-
   vd = -> return null
 
   # Titanium placeholder

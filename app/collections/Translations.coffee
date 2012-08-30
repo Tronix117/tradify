@@ -18,8 +18,7 @@ class TranslationsCollection extends BaseCollection
 
   resetFromCoffee: (content, options = {})->
     @reset []
-    
-    reg = /\s\s(".*"):\s(.*)\s(#\d*)?/g
+    reg = /\s\s(".*"):\s(".*")\s(#\d*)?/g
     while item = reg.exec content
       item[2] = JSON.parse(item[2])
       item[3] = if item[3] then parseInt(item[3].substr(1)) else 0
@@ -29,6 +28,28 @@ class TranslationsCollection extends BaseCollection
         translation: if item[2] then [item[2]] else []
         state: _.binGetNumber item[3], STATES
         flag: _.binGetNumber item[3], FLAGS, 4
+
+  resetFromStrings: (content, options = {})->
+    @reset []
+    reg = /(\/\*\s.*\s\*\/\n)?(".*")\s=\s(".*");(\/\*\d*\/\*)?/g
+    window.ccc = content
+    while item = reg.exec content
+      i = 0
+      val = JSON.parse(item[2]).replace /(\%@)/g, -> 
+        '{'+i+'}'
+        i++
+
+      item[3] = JSON.parse(item[3]).replace /(\%(\d+\$)?@)/g, -> '{'+(parseInt(arguments[2])-1)+'}'
+
+      item[4] = if item[4] then parseInt(item[4].substr(1)) else 0
+
+      @add
+        comment: item[1]
+        raw: item[2]
+        value: val
+        translation: [item[3]]
+        state: _.binGetNumber item[4], STATES
+        flag: _.binGetNumber item[4], FLAGS, 4
 
   getByRaw: (raw) ->
     for item in @models

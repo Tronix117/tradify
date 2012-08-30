@@ -7,9 +7,10 @@ class TranslationModel extends BaseModel
     translation: []
     state: Constants.Translation.STATE_NEW
     flag: 0
+    comment: ''
   
   initialize: ->
-    @set 'value', @get('raw').replace(/{(\d+)\w?(#.*)?}/g, (n, c) -> '{' + parseInt(c) + '}')
+    @set 'value', @get('raw').replace(/{(\d+)\w?(#.*)?}/g, (n, c) -> '{' + parseInt(c) + '}') if not value
     @set 'help', @findTranslationHelp(@get('raw'))
 
   findTranslationHelp: (s)->
@@ -23,12 +24,16 @@ class TranslationModel extends BaseModel
     help
 
   getBinary: ->
-    bin = _.binEnable 0, @flag + 4 if @flag > 0
-    bin = _.binEnable bin, @state
+    bin = _.binEnable 0, @.get 'state'
+    bin = _.binEnable bin, @.get('flag') + 4 if 0 < @.get 'flag'
     bin
 
-  toJSON: ->
+  toJSON: (type)->
     json = _.clone @attributes
+
+    if type == "strings"
+      json.translation = json.translation.replace /{(\d+)}/g, -> '%' + arguments[1] + '$@'
+
     json.binary = @getBinary()
     json
 
