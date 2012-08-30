@@ -32,14 +32,13 @@ class TranslationsCollection extends BaseCollection
   resetFromStrings: (content, options = {})->
     @reset []
     reg = /(\/\*\s.*\s\*\/\n)?(".*")\s=\s(".*");(\/\*\d*\/\*)?/g
-    window.ccc = content
+
     while item = reg.exec content
       i = 0
-      val = JSON.parse(item[2]).replace /(\%@)/g, -> 
-        '{'+i+'}'
-        i++
+      val = JSON.parse(item[2]).replace /(\%@)/g, -> '{' + ( i++ ) + '}'
 
-      item[3] = JSON.parse(item[3]).replace /(\%(\d+\$)?@)/g, -> '{'+(parseInt(arguments[2])-1)+'}'
+      item[3] = JSON.parse(item[3]).replace /(\%(\d+\$)?@)/g, -> 
+        '{'+(parseInt(arguments[2] || 1)-1)+'}'
 
       item[4] = if item[4] then parseInt(item[4].substr(1)) else 0
 

@@ -10,7 +10,7 @@ class TranslationModel extends BaseModel
     comment: ''
   
   initialize: ->
-    @set 'value', @get('raw').replace(/{(\d+)\w?(#.*)?}/g, (n, c) -> '{' + parseInt(c) + '}') if not value
+    @set 'value', @get('raw').replace(/{(\d+)\w?(#.*)?}/g, (n, c) -> '{' + parseInt(c) + '}') if not @.get 'value'
     @set 'help', @findTranslationHelp(@get('raw'))
 
   findTranslationHelp: (s)->
@@ -32,7 +32,7 @@ class TranslationModel extends BaseModel
     json = _.clone @attributes
 
     if type == "strings"
-      json.translation = json.translation.replace /{(\d+)}/g, -> '%' + arguments[1] + '$@'
+      json.translation = json.translation.replace /{(\d+)}/g, -> '%' + (parseInt(arguments[1]) + 1) + '$@'
 
     json.binary = @getBinary()
     json

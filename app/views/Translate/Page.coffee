@@ -42,21 +42,22 @@ class TranslatePageView extends BaseView
     @$('h2').html randTitle[Math.floor(Math.random() * (randTitle.length + 1))]
 
   saveTranslations: ->
-    fileContent = (require 'templates/Translate/File/Coffee') 
-      translator: 'Jeremy Trufier <jeremy@trufier.com>'
-      translations: translationsCollection.toJSON()
-      projectId: 'com.storific.pro'
-      file: 'app.js'
-      hash: ''
-    
-    writeFile = (file)->
+    writeFile = (file, ext)->
+      fileContent = (require 'templates/Translate/File/' + ext.toUpperCase() + ext.substr(1).toLowerCase()) 
+        translator: 'Jeremy Trufier <jeremy@trufier.com>'
+        translations: translationsCollection.toJSON()
+        projectId: 'com.storific.pro'
+        file: 'app.js'
+        hash: ''
       alert 'Unable to write file' unless file.write fileContent
 
-    return writeFile(ST.misc.currentTranslationFile) if ST.misc.currentTranslationFile
+    return writeFile(ST.misc.currentTranslationFile, ST.misc.currentTranslationFileExt) if ST.misc.currentTranslationFile
 
     Titanium.UI.getCurrentWindow().openSaveAsDialog (filesPath)-> 
         ST.misc.currentTranslationFile = Titanium.Filesystem.getFile(filesPath[0])
-        writeFile(ST.misc.currentTranslationFile)
+        ST.misc.currentTranslationFileExt = (filesPath[0].match /\.(.*)$/)[1]
+
+        writeFile(ST.misc.currentTranslationFile, ST.misc.currentTranslationFileExt)
       , 
       title: "Save translation file..."
       multiple: false
@@ -64,9 +65,21 @@ class TranslatePageView extends BaseView
       defaultFile: 'en.coffee'
       
   openTranslations: ->
+    # Fix because the toString doesn't work correctly on every files
+    readContent = (content)->
+      i = 0
+      l = content.length
+      txt = ''
+      while i < l
+        txt += content.charAt i
+        i++
+      txt
+
     Titanium.UI.getCurrentWindow().openFileChooserDialog (filesPath)=>
+      ST.misc.currentTranslationFileExt = (filesPath[0].match /\.(.*)$/)[1]
       ST.misc.currentTranslationFile = Titanium.Filesystem.getFile(filesPath[0])
-      translationsCollection.resetFromCoffee  ST.misc.currentTranslationFile.read()
+      alert tr 'Filetype not supported' unless translationsCollection[method = 'resetFrom' + ST.misc.currentTranslationFileExt[0].toUpperCase() + ST.misc.currentTranslationFileExt.substr(1).toLowerCase()]
+      translationsCollection[method].call translationsCollection, readContent ST.misc.currentTranslationFile.read()
       @displayItems()
 
   scanFile: ->
