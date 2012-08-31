@@ -71,7 +71,8 @@ class TranslatePageView extends BaseView
       bytes = []
       i = 0
       bytes.push content.byteAt i++ while i < content.length
-      String.utfDecodeFromBytes bytes
+      ST.misc.currentTranslationFileEncoding = String.detectEncoding(bytes)
+      String.asciiEncode String.binaryToAscii(bytes), ST.misc.currentTranslationFileEncoding
 
     Titanium.UI.getCurrentWindow().openFileChooserDialog (filesPath)=>
       ST.misc.currentTranslationFileExt = (filesPath[0].match /\.(.*)$/)[1]
