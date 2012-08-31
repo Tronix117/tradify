@@ -24,7 +24,7 @@ class TranslationsCollection extends BaseCollection
       item[3] = if item[3] then parseInt(item[3].substr(1)) else 0
 
       @add
-        raw: JSON.parse item[1]
+        raw: JSON.parse item[1] 
         translation: if item[2] then [item[2]] else []
         state: _.binGetNumber item[3], STATES
         flag: _.binGetNumber item[3], FLAGS, 4

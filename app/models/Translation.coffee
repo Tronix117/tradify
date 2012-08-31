@@ -11,12 +11,13 @@ class TranslationModel extends BaseModel
   
   initialize: ->
     @set 'value', @get('raw').replace(/{(\d+)\w?(#.*)?}/g, (n, c) -> '{' + parseInt(c) + '}') if not @.get 'value'
-    @set 'help', @findTranslationHelp(@get('raw'))
+    @set 'help', @findTranslationHelp(@get('value'))
 
   findTranslationHelp: (s)->
     help = []
     r=/{(\d+)(\w?)#?(.*)?}/g
     while args = r.exec(s)
+      console.log args
       help.push
         number: args[1]
         type: Constants.Translation.HELP_TYPE[args[2]] || ''

@@ -15,9 +15,8 @@ autoload = ->
     window.Titanium = 
       UI: {getCurrentWindow: vd, createMenu: (-> appendItem:vd), createMenuItem: (-> addItem:vd), setMenu: vd}
 
-  window.requireSafe = (f)->
-    try return require(f) catch e
-    return null
+  # Initialize patching
+  require 'utils/String'
 
   # I18n configuration
   I18n = require 'utils/I18n'
