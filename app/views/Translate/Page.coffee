@@ -67,13 +67,11 @@ class TranslatePageView extends BaseView
   openTranslations: ->
     # Fix because the toString doesn't work correctly on every files
     readContent = (content)->
-      console.log content.toString()
       window.c = content
       bytes = []
       i = 0
       bytes.push content.byteAt i++ while i < content.length
-      console.log bytes
-      String.utf8DecodeFromBytes bytes
+      String.utfDecodeFromBytes bytes
 
     Titanium.UI.getCurrentWindow().openFileChooserDialog (filesPath)=>
       ST.misc.currentTranslationFileExt = (filesPath[0].match /\.(.*)$/)[1]

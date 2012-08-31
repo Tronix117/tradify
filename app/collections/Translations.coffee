@@ -30,6 +30,7 @@ class TranslationsCollection extends BaseCollection
         flag: _.binGetNumber item[3], FLAGS, 4
 
   resetFromStrings: (content, options = {})->
+    window.t=content
     @reset []
     reg = /(\/\*\s.*\s\*\/\n)?(".*")\s=\s(".*");(\/\*\d+\*\/)?/g
 
