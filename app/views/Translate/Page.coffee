@@ -71,8 +71,8 @@ class TranslatePageView extends BaseView
       window.c = content
       bytes = []
       i = 0
-      i++ while bytes[i] = content.byteAt(i)
-      bytes.pop()
+      bytes.push content.byteAt i++ while i < content.length
+      console.log bytes
       String.utf8DecodeFromBytes bytes
 
     Titanium.UI.getCurrentWindow().openFileChooserDialog (filesPath)=>
