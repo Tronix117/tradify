@@ -16,12 +16,12 @@ String.utf8Decode = (bytes) ->
 
   string
 
-String.utf8Encode = (text) ->
+String.utf8Encode = (binary) ->
   bytes = []
   
   n = 0
-  while n < text.length
-    c = text.charCodeAt n
+  while n < binary.length
+    c = binary[n]
 
     if c < 128
       bytes.push c
@@ -32,26 +32,9 @@ String.utf8Encode = (text) ->
       bytes.push (c >> 12) | 224
       bytes.push ((c >> 6) & 63) | 128
       bytes.push (c & 63) | 128
-
     n++
 
-  bytes
-
-String.utf16Encode = (text, bigEndian) ->
-  text = text.replace /\r\n/g, '\n'
-  bytes= []
-
-  n = 0
-
-  while n < text.length
-    c = text.charCodeAt n
-
-    bytes.push c >> 8 if bigEndian
-    bytes.push c & 63
-    bytes.push c >> 8 unless bigEndian
-  
-  bom = if bigEndian then [0xFE, 0xFF] else [0xFF, 0xFE]
-  bytes = bom.merge bytes
+  [0xEF, 0xBB, 0xBF].concat bytes
 
 String.utf16Decode = (bytes, bigEndian) ->
   string = ''
@@ -68,19 +51,34 @@ String.utf16Decode = (bytes, bigEndian) ->
     
   string
 
+String.utf16Encode = (binary, bigEndian) ->
+  bytes= []
+
+  n = 0
+
+  while n < binary.length
+    bytes.push binary[n] >> 8 if bigEndian
+    bytes.push binary[n] & 63
+    bytes.push binary[n] >> 8 unless bigEndian
+    n++
+  
+  bom = if bigEndian then [0xFE, 0xFF] else [0xFF, 0xFE]
+  bom.concat bytes
+
 String.binaryToAscii = (bytes) ->
   n = 0
   ascii = ''
   while n < bytes.length
-    ascii += String.fromCharCode bytes[n]
+    ascii += String.fromCharCode bytes[n++]
   ascii
 
 String.asciiToBinary = (ascii) ->
+  console.log ascii
   ascii = ascii.replace /\r\n/g, '\n'
   n = 0
   bytes = []
   while n < ascii.length
-    bytes += ascii.charCodeAt n
+    bytes.push ascii.charCodeAt(n++)
   bytes
 
 String.detectEncoding = (bytes) ->
@@ -98,9 +96,9 @@ String.detectEncoding = (bytes) ->
 String.asciiDecode = (text, encoding = 'utf8') ->
   bytes = String.asciiToBinary text
   switch encoding
-    when 'utf16le' then return String.utf16Encode(bytes, false)
-    when 'utf16be' then return String.utf16Encode(bytes, true)
-    else return String.utf8Encode(bytes)
+    when 'utf16le' then return String.binaryToAscii String.utf16Encode bytes, false
+    when 'utf16be' then return String.binaryToAscii String.utf16Encode bytes, true
+    else return String.utf8Encode bytes
 
 String.asciiEncode = (ascii, encoding = null) ->
   bytes = String.asciiToBinary ascii

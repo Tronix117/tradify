@@ -49,7 +49,8 @@ class TranslatePageView extends BaseView
         projectId: 'com.storific.pro'
         file: 'app.js'
         hash: ''
-      alert 'Unable to write file' unless file.write fileContent
+      window.d=fileContent
+      alert 'Unable to write file' unless file.write fileContent # String.asciiDecode(fileContent, ST.misc.currentTranslationFileEncoding)
 
     return writeFile(ST.misc.currentTranslationFile, ST.misc.currentTranslationFileExt) if ST.misc.currentTranslationFile
 
