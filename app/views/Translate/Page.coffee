@@ -76,9 +76,10 @@ class TranslatePageView extends BaseView
       String.asciiEncode String.binaryToAscii(bytes), ST.misc.currentTranslationFileEncoding
 
     Titanium.UI.getCurrentWindow().openFileChooserDialog (filesPath)=>
-      ST.misc.currentTranslationFileExt = (filesPath[0].match /\.(.*)$/)[1]
+      ST.misc.currentTranslationFileExt = (filesPath[0].match /\.([^\.]+)$/)[1]
       ST.misc.currentTranslationFile = Titanium.Filesystem.getFile(filesPath[0])
-      alert tr 'Filetype not supported' unless translationsCollection[method = 'resetFrom' + ST.misc.currentTranslationFileExt[0].toUpperCase() + ST.misc.currentTranslationFileExt.substr(1).toLowerCase()]
+      console.log ST.misc.currentTranslationFileExt
+      alert tr 'Filetype not supported' unless translationsCollection[method = ('resetFrom' + ST.misc.currentTranslationFileExt[0].toUpperCase() + ST.misc.currentTranslationFileExt.substr(1).toLowerCase())]
       translationsCollection[method].call translationsCollection, readContent ST.misc.currentTranslationFile.read()
       @displayItems()
 

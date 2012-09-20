@@ -18,7 +18,7 @@ class TranslationsCollection extends BaseCollection
 
   resetFromCoffee: (content, options = {})->
     @reset []
-    reg = /\s\s(".*"):\s(".*")\s(#\d*)?/g
+    reg = /\s\s(".*"):\s(".*"|null)\s(#\d*)?/g
     while item = reg.exec content
       item[2] = JSON.parse(item[2])
       item[3] = if item[3] then parseInt(item[3].substr(1)) else 0
