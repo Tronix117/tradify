@@ -4,6 +4,8 @@ Tradify
 Provides a nice interface (win, osx, linux), you can give to all your translators, along with files to translate.
 It's finaly the end to translator who give you back '.doc' files, now you will directly have your localisations files in a ready to use format.
 
+And here is the download links: [Download Tradify!](https://github.com/Tronix117/tradify/downloads)
+
 Adapt a color code (default grey, green, red, blue) to see directly which translations need to be reviewed, or have been accepted.
 
 You can see a [screenshot here](http://d.pr/i/VF5l)
