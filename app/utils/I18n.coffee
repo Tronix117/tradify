@@ -49,7 +49,7 @@ class I18n
     while i < t.length
       s = if typeof t[i] is "function" then t[i].apply(this, a) else t[i]
       i++
-    s.replace /{(\d+)\w?(#.*)?}/g, (n, c) ->
+    s.replace /{(\d+)\w?(#.*?)?}/g, (n, c) ->
       a[c]  if a[c = parseInt(c) + 1]
 
 module.exports = new I18n
