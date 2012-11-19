@@ -1,6 +1,6 @@
 .DS_Store
 Resources
-dist/osx/*.app
+dist/*
 node_modules
 test
 log
