@@ -1,13 +1,13 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <ti:app xmlns:ti='http://ti.appcelerator.org'>
 <!-- These values are edited/maintained by Titanium Developer -->
-<id>com.storific.tradify</id>
+<id>com.trufier.tradify</id>
 <name>Tradify</name>
 <version>1.0</version>
 <publisher>jeremyt</publisher>
-<url>www.storific.com</url>
+<url>github.com/Tronix117/tradify</url>
 <icon>Icon.png</icon>
-<copyright>2012 by Storific</copyright>
+<copyright>2012 by Jeremy Trufier</copyright>
 <!-- Window Definition - these values can be edited -->
 <window>
 <id>initial</id>

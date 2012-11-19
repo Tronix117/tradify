@@ -44,10 +44,10 @@ class TranslatePageView extends BaseView
   saveTranslations: ->
     writeFile = (file, ext)->
       fileContent = (require 'templates/Translate/File/' + ext[0].toUpperCase() + ext.substr(1).toLowerCase()) 
-        translator: 'Jeremy Trufier <jeremy@trufier.com>'
+        translator: 'Anonymous'
         translations: translationsCollection.toJSON(ext)
-        projectId: 'com.storific.pro'
-        file: 'app.js'
+        projectId: 'not known'
+        file: 'not known'
         hash: ''
       window.d=fileContent
       alert 'Unable to write file' unless file.write fileContent # String.asciiDecode(fileContent, ST.misc.currentTranslationFileEncoding)
